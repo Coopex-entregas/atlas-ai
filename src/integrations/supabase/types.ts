@@ -38,6 +38,39 @@ export type Database = {
         }
         Relationships: []
       }
+      customers: {
+        Row: {
+          created_at: string
+          default_address: string | null
+          default_neighborhood: string | null
+          default_number: string | null
+          id: string
+          phone: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          default_address?: string | null
+          default_neighborhood?: string | null
+          default_number?: string | null
+          id?: string
+          phone: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          default_address?: string | null
+          default_neighborhood?: string | null
+          default_number?: string | null
+          id?: string
+          phone?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       files: {
         Row: {
           created_at: string
@@ -107,6 +140,113 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      order_stops: {
+        Row: {
+          address: string
+          contact_name: string
+          contact_phone: string | null
+          created_at: string
+          id: string
+          neighborhood: string
+          notes: string | null
+          number: string
+          order_id: string
+          stop_order: number
+        }
+        Insert: {
+          address: string
+          contact_name: string
+          contact_phone?: string | null
+          created_at?: string
+          id?: string
+          neighborhood: string
+          notes?: string | null
+          number: string
+          order_id: string
+          stop_order: number
+        }
+        Update: {
+          address?: string
+          contact_name?: string
+          contact_phone?: string | null
+          created_at?: string
+          id?: string
+          neighborhood?: string
+          notes?: string | null
+          number?: string
+          order_id?: string
+          stop_order?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_stops_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          created_at: string
+          delivery_address: string
+          delivery_contact_name: string
+          delivery_contact_phone: string | null
+          delivery_neighborhood: string
+          delivery_number: string
+          id: string
+          notes: string | null
+          pickup_address: string
+          pickup_contact_name: string
+          pickup_contact_phone: string | null
+          pickup_neighborhood: string
+          pickup_number: string
+          service_type: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          delivery_address: string
+          delivery_contact_name: string
+          delivery_contact_phone?: string | null
+          delivery_neighborhood: string
+          delivery_number: string
+          id?: string
+          notes?: string | null
+          pickup_address: string
+          pickup_contact_name: string
+          pickup_contact_phone?: string | null
+          pickup_neighborhood: string
+          pickup_number: string
+          service_type: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          delivery_address?: string
+          delivery_contact_name?: string
+          delivery_contact_phone?: string | null
+          delivery_neighborhood?: string
+          delivery_number?: string
+          id?: string
+          notes?: string | null
+          pickup_address?: string
+          pickup_contact_name?: string
+          pickup_contact_phone?: string | null
+          pickup_neighborhood?: string
+          pickup_number?: string
+          service_type?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
       }
       profiles: {
         Row: {
